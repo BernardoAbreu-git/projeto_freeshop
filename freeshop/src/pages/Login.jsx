@@ -3,6 +3,7 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import './Login.css';
 
 //esquema de validação? talvez...
 const schema = yup.object({
@@ -30,38 +31,34 @@ export default function Login() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100 px-4">
-      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Fazer Login</h2>
+    <div className="login-page-container">
+      <div className="login-card">
+        <h2 className="login-title">Fazer Login</h2>
         
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-
-{/*user*/}  
-        <div>
-            <label className="block text-sm text-gray-600">Usuário</label>
+          <div>
+            <label className="input-label">Usuário</label>
             <input 
               {...register("username")}
-              className={`w-full p-2 border rounded mt-1 ${errors.username ? 'border-red-500' : 'border-gray-300'}`}
+              className={`login-input ${errors.username ? 'input-error' : ''}`}
+              placeholder="Digite seu usuário"
             />
-            <p className="text-red-500 text-xs mt-1">{errors.username?.message}</p>
+            <p className="error-message">{errors.username?.message}</p>
           </div>
 
-{/*senha*/}
           <div>
-            <label className="block text-sm text-gray-600">Senha</label>
+            <label className="input-label">Senha</label>
             <input 
               type="password"
               {...register("password")}
-              className={`w-full p-2 border rounded mt-1 ${errors.password ? 'border-red-500' : 'border-gray-300'}`}
+              className={`login-input ${errors.password ? 'input-error' : ''}`}
+              placeholder="••••••••"
             />
-            <p className="text-red-500 text-xs mt-1">{errors.password?.message}</p>
+            <p className="error-message">{errors.password?.message}</p>
           </div>
 
-          <button 
-            type="submit"
-            className="w-full bg-blue-600 text-white py-2 rounded font-bold hover:bg-blue-700 transition"
-          >
-            Entrar
+          <button type="submit" className="login-button">
+            ENTRAR
           </button>
         </form>
       </div>

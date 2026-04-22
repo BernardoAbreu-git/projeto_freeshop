@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Store from './pages/Store';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import RotaProtegida from './components/RotaProtegida';
@@ -8,6 +9,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/home" element={<Home />} />
+        <Route path="/store" element={<Store />} />
         <Route path="/" element={<Login />} />
         <Route path="/products/:id" element={<div>Detalhes (Em breve)</div>} />
         <Route path="/cart" element={<div>Carrinho (Em breve)</div>} />
