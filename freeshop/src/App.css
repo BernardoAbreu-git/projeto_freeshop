@@ -1,0 +1,18 @@
+:root {
+  --bg-dark: #121212;
+  --bg-card: #1e1e1e;
+  --purple-main: #6200ee;
+  --purple-light: #bb86fc;
+  --text-primary: #ffffff;
+  --text-secondary: #b0b0b0;
+  --accent-yellow: #fff159;
+  --error: #cf6679;
+  --success: #00a650;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}

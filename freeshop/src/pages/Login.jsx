@@ -5,7 +5,6 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
 
-//esquema de validação? talvez...
 const schema = yup.object({
   username: yup.string().required("O nome de usuário é obrigatório"),
   password: yup.string().min(6, "A senha deve ter pelo menos 6 caracteres").required("Senha obrigatória"),
@@ -14,17 +13,15 @@ const schema = yup.object({
 export default function Login() {
   const navigate = useNavigate();
   
-  //config do hook 
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(schema)
   });
 
-  //Função para enviar os dados para a FakeStoreAPI
   const onSubmit = async (data) => {
     try {
       const response = await axios.post('https://fakestoreapi.com/auth/login', data);
-      localStorage.setItem('token', response.data.token); //armazenar o JWT 
-      navigate('/dashboard'); //faz ir pra tal rota protegifda
+      localStorage.setItem('token', response.data.token);
+      navigate('/dashboard');
     } catch (error) {
       alert("Erro ao fazer login. Verifique suas credenciais.");
     }

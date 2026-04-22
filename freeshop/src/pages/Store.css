@@ -1,57 +1,71 @@
 .store-container {
-    background-color: #ebebeb;
+    background-color: #121212;
     padding: 40px 5%;
+    min-height: 100vh;
 }
 
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
 }
 
-
 .product-card {
-    border-radius: 8px;
+    background-color: #1e1e1e !important;
+    border: 1px solid #333 !important;
+    border-radius: 12px !important;
     overflow: hidden;
-    transition: transform 0.2s;
-    border: none;
+    transition: all 0.3s ease;
+    color: white !important;
 }
 
 .product-card:hover {
+    border-color: #bb86fc !important;
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1) ;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5) !important;
 }
 
 .product-card-img {
-    width: 100%;
-    height: 200px;
-    object-fit: contain; 
+    background-color: white;
     padding: 20px;
-    background: white;
+    height: 250px;
+    object-fit: contain;
+    width: 100%;
+    display: block;
 }
 
-.product-title-text {
-    font-size: 1rem;
-    font-weight: 400;
-    color: #333;
+.product-title-text { 
+    color: #ffffff !important; 
+    font-weight: 600;
     display: -webkit-box;
-    -webkit-line-clamp: 2; 
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    height: 45px;
 }
 
-.product-price-text {
-    font-size: 1.4rem;
-    color: #333;
-    font-weight: 500;
+.product-price-text { 
+    color: #bb86fc !important;
+    font-size: 1.6rem !important;
+    font-weight: bold;
+    display: block;
+    margin: 10px 0;
 }
-
 
 .p-button.p-button-primary {
-    background-color: #3483fa ;
-    border-color: #3483fa ;
+    background-color: #6200ee !important;
+    border: none !important;
 }
 
-.p-button.p-button-info.p-button-outlined {
-    color: #3483fa ;
+.p-button.p-button-primary:hover {
+    background-color: #7c4dff !important;
+}
+
+.p-button.p-button-outlined.p-button-info {
+    color: #bb86fc !important;
+    border-color: #bb86fc !important;
+}
+
+.p-button.p-button-outlined.p-button-info:hover {
+    background: rgba(187, 134, 252, 0.1) !important;
 }

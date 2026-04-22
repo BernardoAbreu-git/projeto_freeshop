@@ -1,29 +1,43 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Store from './pages/Store';
 import Home from './pages/Home';
-import Login from './pages/Login';
+import Auth from './pages/Auth'; 
 import RotaProtegida from './components/RotaProtegida';
 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
+      
+        <Route path="/" element={<Auth />} />
+        
+        
         <Route path="/home" element={<Home />} />
         <Route path="/store" element={<Store />} />
-        <Route path="/" element={<Login />} />
-        <Route path="/products/:id" element={<div>Detalhes (Em breve)</div>} />
-        <Route path="/cart" element={<div>Carrinho (Em breve)</div>} />
+        
+      
+        <Route path="/products/:id" element={<div className="p-5 text-center"><h1>Detalhes do Produto</h1><p>Em breve...</p></div>} />
+        <Route path="/cart" element={<div className="p-5 text-center"><h1>Seu Carrinho</h1><p>Em breve...</p></div>} />
+        
         
         <Route 
           path="/dashboard" 
           element={
             <RotaProtegida>
-              <div>Dashboard Protegida</div>
+              <div className="p-5 text-center">
+                <h1 style={{color: '#bb86fc'}}>Dashboard Protegida</h1>
+                <p>Apenas usuários logados veem isso.</p>
+              </div>
             </RotaProtegida>
           } 
         />
 
-        <Route path="*" element={<h1>404 - Não encontrado</h1>} />
+      
+        <Route path="*" element={
+          <div className="flex align-items-center justify-content-center" style={{height: '100vh', background: '#121212', color: 'white'}}>
+            <h1>404 - Caminho incorreto</h1>
+          </div>
+        } />
       </Routes>
     </BrowserRouter>
   );
