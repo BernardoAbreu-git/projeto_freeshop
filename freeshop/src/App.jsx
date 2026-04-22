@@ -3,6 +3,7 @@ import Store from './pages/Store';
 import Home from './pages/Home';
 import Auth from './pages/Auth'; 
 import RotaProtegida from './components/RotaProtegida';
+import Cart from './pages/Cart';
 
 export default function App() {
   return (
@@ -17,8 +18,7 @@ export default function App() {
         
       
         <Route path="/products/:id" element={<div className="p-5 text-center"><h1>Detalhes do Produto</h1><p>Em breve...</p></div>} />
-        <Route path="/cart" element={<div className="p-5 text-center"><h1>Seu Carrinho</h1><p>Em breve...</p></div>} />
-        
+        <Route path="/cart" element={<Cart />} />
         
         <Route 
           path="/dashboard" 

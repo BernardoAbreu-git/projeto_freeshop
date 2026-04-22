@@ -10,6 +10,22 @@ export default function Store() {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
+  const addToCart = (product) => {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+    const index = cart.findIndex(item => item.id === product.id);
+    
+    if (index !== -1) {
+      cart[index].quantity += 1;
+    } else {
+      cart.push({ ...product, quantity: 1 });
+    }
+    
+    localStorage.setItem('cart', JSON.stringify(cart));
+    
+    alert(`${product.title} foi adicionado ao carrinho!`);
+  };
+
   useEffect(() => {
     axios.get('https://fakestoreapi.com/products')
       .then(res => {
@@ -43,6 +59,7 @@ export default function Store() {
                 label="Adicionar" 
                 icon="pi pi-shopping-cart"
                 className="p-button-primary w-full" 
+                onClick={() => addToCart(product)} 
               />
             </div>
           </Card>
