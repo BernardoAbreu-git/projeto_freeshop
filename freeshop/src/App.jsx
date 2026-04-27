@@ -4,10 +4,12 @@ import Home from './pages/Home';
 import Auth from './pages/Auth'; 
 import RotaProtegida from './components/RotaProtegida';
 import Cart from './pages/Cart';
+import 'primeicons/primeicons.css';
 
 export default function App() {
   return (
     <BrowserRouter>
+    
       <Routes>
       
         <Route path="/" element={<Auth />} />
