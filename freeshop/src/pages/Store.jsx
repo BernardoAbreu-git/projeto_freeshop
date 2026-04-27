@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios'; 
 import { useNavigate } from 'react-router-dom'; 
 import { Card } from 'primereact/card';
 import { Button } from 'primereact/button';
+import { Toast } from 'primereact/toast';
 import './Store.css';
 
 export default function Store() {
   const [products, setProducts] = useState([]); 
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const toast = useRef(null); 
 
   const addToCart = (product) => {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -22,8 +24,6 @@ export default function Store() {
     }
     
     localStorage.setItem('cart', JSON.stringify(cart));
-    
-    alert(`${product.title} foi adicionado ao carrinho!`);
   };
 
   useEffect(() => {
@@ -39,6 +39,23 @@ export default function Store() {
 
   return (
     <div className="store-container">
+      
+      <Toast ref={toast} />
+    <Button 
+  icon="pi pi-shopping-cart" 
+  onClick={() => navigate('/cart')} 
+  className="p-button-rounded"
+  badgeClassName="p-badge-danger"
+  style={{
+    backgroundColor: '#985ce2',
+    border: 'none',
+    position: 'fixed',
+    top: '20px',
+    right: '20px',
+    zIndex: 1000
+  }}
+/>
+
       <div className="product-grid">
         {products.map(product => (
           <Card 
@@ -49,18 +66,29 @@ export default function Store() {
             className="product-card shadow-1"
           >
             <div className="flex flex-column gap-2">
+              
               <Button 
                 label="Ver Detalhes" 
                 icon="pi pi-search"
                 className="p-button-outlined p-button-info w-full"
                 onClick={() => navigate(`/products/${product.id}`)} 
               />
-              <Button 
+
+              <Button
                 label="Adicionar" 
                 icon="pi pi-shopping-cart"
                 className="p-button-primary w-full" 
-                onClick={() => addToCart(product)} 
+                onClick={() => {
+                  addToCart(product);
+                  toast.current.show({
+                    severity: 'success',
+                    summary: 'Sucesso',
+                    detail: `${product.title} foi adicionado ao carrinho!`,
+                    life: 3000
+                  });
+                }} 
               />
+
             </div>
           </Card>
         ))}
