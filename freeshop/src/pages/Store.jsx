@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Card } from 'primereact/card';
 import { Button } from 'primereact/button';
 import { Toast } from 'primereact/toast';
+import api from '../services/api';
 import './Store.css';
 
 export default function Store() {
@@ -26,14 +27,14 @@ export default function Store() {
     localStorage.setItem('cart', JSON.stringify(cart));
   };
 
-  useEffect(() => {
-    axios.get('https://fakestoreapi.com/products')
-      .then(res => {
-        setProducts(res.data);
-        setLoading(false);
-      })
-      .catch(err => console.error("Erro na API", err));
-  }, []);
+    useEffect(() => {
+      api.get('/products')
+        .then(res => {
+          setProducts(res.data);
+          setLoading(false);
+        })
+        .catch(err => console.error("Erro na API", err));
+    }, []);
 
   if (loading) return <div className="text-center mt-8">Carregando produtos...</div>;
 
