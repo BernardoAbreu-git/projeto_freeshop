@@ -43,12 +43,10 @@ export default function ProductDetails() {
     });
   };
 
-  // Estado de erro
   if (error) {
     return <div className="loading">Erro ao carregar produto.</div>;
   }
 
-  // Estado de loading
   if (!product) {
     return <div className="loading">Carregando...</div>;
   }
